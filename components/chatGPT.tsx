@@ -1,11 +1,13 @@
-async function chatRequest() {
+
+async function chatRequest(chatPrompt: string) {
+    
     const { Configuration, OpenAIApi } = require("openai");
 
     const configuration = new Configuration({
       apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new OpenAIApi(configuration);
-    let chatPrompt = "Hello World";
+    chatPrompt = "Hello World";
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content:chatPrompt}],
@@ -15,8 +17,8 @@ async function chatRequest() {
     const chatMessage = {prompt:chatPrompt, response:chatResponse}
     return(chatMessage);
 }
-function chatGPT() {
- const message = chatRequest();
+function chatGPT(chatPrompt: string) {
+ const message = chatRequest(chatPrompt);
   return (
     message
   );
